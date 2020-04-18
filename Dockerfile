@@ -1,8 +1,15 @@
 FROM node:12
 
-EXPOSE 5000
+
+WORKDIR /usr/src/server
+
+COPY package.json ./
+
+RUN yarn install
 
 COPY . .
+
+EXPOSE 5000
 
 CMD ["node", "server.js"]
 
