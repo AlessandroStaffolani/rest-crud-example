@@ -7,6 +7,8 @@ const boolParser = require('express-query-boolean');
 const logger = require('morgan');
 const db = require('./db');
 const ResponseObject = require('./utils/ResponseObject');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 

@@ -6,14 +6,24 @@ services:
     container_name: mongo
     restart: always
     ports:
-    - 27017:27017
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: pass1234
-      MONGO_INITDB_DATABASE: db
+      MONGO_INITDB_DATABASE: rest-crud
     volumes:
       - mongo-data:/data/db
       - ./db-init/init.js:/docker-entrypoint-initdb.d/init.js
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rest-crud
+    ports:
+      - 5000:5000
+    environment:
+      MONGO_URI: mongodb://user:pass@mongo:27017/rest-crud
 
 volumes:
   mongo-data:

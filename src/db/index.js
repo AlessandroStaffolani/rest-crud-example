@@ -1,15 +1,9 @@
 const mongoose = require('mongoose')
-const config = require('../config/config.json')
 const populateDb = require('./initialPopulate')
-const {isEmpty} = require('../utils/utils')
-const dbConfig = config.db
+const dotenv = require('dotenv');
+dotenv.config();
 
-let mongoUri = ''
-if (isEmpty(dbConfig.user) && isEmpty(dbConfig.password)) {
-    mongoUri = `mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.databaseName}`
-} else {
-    mongoUri = `mongodb://${dbConfig.user}:${dbConfig.password}@${dbConfig.host}:${dbConfig.port}/${dbConfig.databaseName}`
-}
+let mongoUri = process.env.MONGO_URI
 
 mongoose
     .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})

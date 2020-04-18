@@ -144,3 +144,5 @@ Temporary Items
 .apdisk
 
 .idea
+
+db-init/init.js
