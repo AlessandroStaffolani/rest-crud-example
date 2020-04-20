@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: rest-crud
+  name: rest-crud
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rest-crud
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rest-crud
+    spec:
+      containers:
+        - image: docker-registry.imolab.it/astaffolani/test-image
+          name: rest-crud
+          ports:
+            - containerPort: 5000
